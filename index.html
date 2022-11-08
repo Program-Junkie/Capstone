@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Socket.IO chat</title>
+</head>
+
+<body>
+  <script src="index.js"></script>
+  <button type="button" onclick="S2()">Create Lobby</button><br>
+
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    function S2() {
+      var socket = io('http://localhost:3000');
+      socket.on('greeting-from-server',function (message) {
+        document.body.appendChild(document.createTextNode(message.greeting));
+
+        socket.emit('greeting-from-client', {greeting: 'Hello Server'});
+
+      });
+
+    }
+    S2()
+  </script>
+</body>
+
+</html>
